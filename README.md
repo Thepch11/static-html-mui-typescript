@@ -1,109 +1,336 @@
-👨🏻‍💻 You can generate a web HTML project by following shell script 👨🏻‍💻
+# Interactive Document Viewer
 
-Creating a shell script (.sh) to generate a web HTML project with TypeScript and Node.js involves several steps. In this example, I'll guide you through the process of creating a simple script that sets up a basic project structure. Keep in mind that this script assumes you have Node.js and npm installed on your machine.
+A modern, static documentation and report viewer built with **React**, **TypeScript**, and **Material UI (MUI)**, hosted on **GitHub Pages**.
 
-Here's a shell script to create a web HTML project with TypeScript and Node.js:
+The application is designed for **read-only document visualization** and supports a wide range of interactive report formats including diagrams, charts, dashboards, architecture documentation, release notes, and structured data viewers.
 
-	#!/bin/bash
-	
-	# Check if Node.js is installed
-	if ! command -v node &> /dev/null; then
-	    echo "Node.js is not installed. Please install it first."
-	    exit 1
-	fi
-	
-	# Check if npm is installed
-	if ! command -v npm &> /dev/null; then
-	    echo "npm is not installed. Please install it first."
-	    exit 1
-	fi
-	
-	# Get project name from user
-	read -p "Enter project name: " projectName
-	
-	# Create project directory
-	mkdir $projectName
-	cd $projectName
-	
-	# Initialize npm package
-	npm init -y
-	
-	# Install necessary packages
-	npm install express typescript ts-node @types/node --save
-	
-	# Create TypeScript configuration file (tsconfig.json)
-	echo '{
-	  "compilerOptions": {
-	    "target": "es6",
-	    "module": "commonjs",
-	    "outDir": "./dist",
-	    "rootDir": "./src",
-	    "strict": true
-	  }
-	}' > tsconfig.json
-	
-	# Create source and distribution directories
-	mkdir src
-	mkdir dist
-	
-	# Create a simple Express app in TypeScript (src/app.ts)
-	echo 'import express from "express";
-	
-	const app = express();
-	const port = 3000;
-	
-	app.get("/", (req, res) => {
-	  res.send("Hello, TypeScript with Node.js!");
-	});
-	
-	app.listen(port, () => {
-	  console.log(`Server is running at http://localhost:${port}`);
-	});
-	' > src/app.ts
-	
-	# Create a simple HTML file (src/index.html)
-	echo '<!DOCTYPE html>
-	<html lang="en">
-	<head>
-	    <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>TypeScript Node.js App</title>
-	</head>
-	<body>
-	    <h1>Hello, TypeScript with Node.js!</h1>
-	</body>
-	</html>
-	' > src/index.html
-	
-	# Compile TypeScript code
-	npx tsc
-	
-	# print
-	echo 'You are rock 🤘🏻🤘🏻🤘🏻'
-	
-	# Run the application
-	node dist/app.js
-	
-Save this script with a .sh extension (e.g., create_project.sh) and give it execute permissions:
-		
-	chmod +x create_project.sh
-	
-	
-Then, run the script:
+---
 
-	./create_project.sh
-	
+## 🎯 Purpose
 
+This repository provides a lightweight and scalable platform for publishing and viewing technical documentation, architecture artifacts, release reports, and business dashboards as a static website.
 
-This script does the following:
-> 	1. Checks if Node.js and npm are installed.
-> 	2. Prompts the user for a project name.
-> 	3. Creates a project directory and navigates into it.
-> 	4. Initializes an npm package.
-> 	5. Installs necessary packages (Express, TypeScript, ts-node).
-> 	6. Creates a tsconfig.json file for TypeScript configuration.
-> 	7. Sets up the project structure with source and distribution directories.
-> 	8. Creates a simple Express app in TypeScript (src/app.ts).
-> 	9. Creates a simple HTML file (src/index.html).
-> 	10. Compiles TypeScript code using tsc.
-> 	11. Runs the Node.js application.
+**Key Characteristics**
+
+- ✅ Read-only document viewer
+- ✅ Static website hosted on GitHub Pages
+- ✅ No backend required
+- ✅ Responsive UI powered by Material UI (MUI)
+- ✅ Supports interactive visualizations
+- ✅ Optimized for large technical documentation repositories
+
+---
+
+## 🏗️ Technology Stack
+
+### Frontend
+
+- React
+- TypeScript
+- Material UI (MUI)
+- React Router
+- Markdown Renderer
+- Mermaid
+- SVG Pan Zoom
+- Chart Libraries (Recharts / Chart.js / ECharts)
+
+### Hosting
+
+- GitHub Pages
+
+### CI/CD
+
+- GitHub Actions
+
+---
+
+## ✨ Supported Content Types
+
+### 1. Mermaid Diagrams
+
+Render architecture and workflow diagrams directly from Mermaid source.
+
+Supported examples:
+
+- Flowcharts
+- Sequence Diagrams
+- State Diagrams
+- Class Diagrams
+- ER Diagrams
+- User Journeys
+- Gantt Charts
+- Git Graphs
+
+Example:
+
+```mermaid
+flowchart LR
+    A[Source] --> B[Transform]
+    B --> C[Report]
+```
+
+---
+
+### 2. Interactive Charts
+
+Display data visualizations including:
+
+- Line Charts
+- Bar Charts
+- Pie Charts
+- Area Charts
+- Scatter Charts
+- Heatmaps
+- Trend Analysis
+
+Supported formats:
+
+- JSON
+- CSV
+
+---
+
+### 3. SVG Viewer with Zoom & Pan
+
+Interactive SVG support with:
+
+- Zoom In / Out
+- Pan Navigation
+- Fit to Screen
+- Fullscreen Mode
+- Mini-map Navigation
+
+Ideal for:
+
+- Architecture Diagrams
+- Infrastructure Maps
+- UML Diagrams
+- Process Flows
+
+---
+
+### 4. Markdown Documents
+
+Render Markdown files with support for:
+
+- Tables
+- Code Blocks
+- TOC (Table of Contents)
+- Internal Navigation
+- Syntax Highlighting
+- Mermaid Embedding
+
+Supported format:
+
+```text
+.md
+```
+
+---
+
+### 5. PDF Viewer
+
+Embedded PDF support for:
+
+- Design Documents
+- Business Requirements
+- Release Notes
+- Technical Specifications
+- Architecture Documents
+
+Supported format:
+
+```text
+.pdf
+```
+
+---
+
+### 6. JSON & CSV Viewer
+
+Structured data inspection with:
+
+- Tree View
+- Expand / Collapse
+- Search
+- Syntax Highlighting
+- Filtering
+- Sorting
+
+Supported formats:
+
+```text
+.json
+.csv
+```
+
+---
+
+### 7. Interactive Table Viewer
+
+Features:
+
+- Client-side Search
+- Pagination
+- Sorting
+- Filtering
+- Export Capability
+- Sticky Headers
+
+Ideal for:
+
+- Release Data
+- Product Catalogs
+- Environment Comparison Reports
+- Inventory Reports
+
+---
+
+### 8. Architecture Viewer
+
+Purpose-built support for architecture documentation:
+
+- Solution Architecture
+- System Architecture
+- Application Architecture
+- Integration Architecture
+- Cloud Architecture
+
+Supported formats:
+
+- Mermaid
+- SVG
+- PNG
+- PDF
+- Markdown
+
+---
+
+### 9. Release Note Dashboard
+
+Interactive release note visualization including:
+
+- Version History
+- Release Timeline
+- Deployment Summary
+- Environment Comparison
+- Change Tracking
+- Release Verification Reports
+
+Supported environments:
+
+- DIT
+- DIT2
+- SIT
+- UAT
+- PS2
+- PROD
+
+---
+
+## 📂 Supported File Types
+
+| File Type | Supported |
+|------------|------------|
+| HTML | ✅ |
+| Markdown (.md) | ✅ |
+| PDF (.pdf) | ✅ |
+| JSON (.json) | ✅ |
+| CSV (.csv) | ✅ |
+| SVG (.svg) | ✅ |
+| PNG / JPG | ✅ |
+| Mermaid (.mmd) | ✅ |
+
+---
+
+## 📁 Recommended Project Structure
+
+```text
+project-root/
+│
+├── public/
+│   ├── documents/
+│   ├── reports/
+│   ├── diagrams/
+│   ├── release-notes/
+│   └── assets/
+│
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── viewers/
+│   ├── layouts/
+│   ├── hooks/
+│   ├── services/
+│   └── utils/
+│
+├── docs/
+│
+├── .github/
+│   └── workflows/
+│
+└── README.md
+```
+
+---
+
+## 🚀 Deployment
+
+Build the application:
+
+```bash
+npm install
+npm run build
+```
+
+Deploy to GitHub Pages:
+
+```bash
+npm run deploy
+```
+
+---
+
+## 🔒 Design Principles
+
+- Read-only content
+- No document editing capabilities
+- Static hosting only
+- Fully client-side rendering
+- Responsive design
+- Accessibility friendly
+- Dark / Light theme support
+
+---
+
+## 🎨 UI Features
+
+- Material UI Design System
+- Responsive Layout
+- Dark Mode
+- Light Mode
+- Search Across Documents
+- Navigation Sidebar
+- Breadcrumb Navigation
+- Fullscreen Viewer
+- Mobile Friendly
+
+---
+
+## 📈 Typical Use Cases
+
+- Technical Documentation Portal
+- Architecture Repository
+- Release Management Dashboard
+- Deployment Verification Reports
+- Product Documentation
+- Engineering Knowledge Base
+- Business Reporting Portal
+- Interactive HTML Reports
+- Mermaid-based Architecture Viewer
+
+---
+
+## License
+
+MIT License
