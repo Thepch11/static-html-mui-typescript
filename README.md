@@ -1,336 +1,67 @@
-# Interactive Document Viewer
+# Static HTML MUI TypeScript
 
-A modern, static documentation and report viewer built with **React**, **TypeScript**, and **Material UI (MUI)**, hosted on **GitHub Pages**.
+A responsive static resource hub built with React, TypeScript, Material UI, and Vite.
 
-The application is designed for **read-only document visualization** and supports a wide range of interactive report formats including diagrams, charts, dashboards, architecture documentation, release notes, and structured data viewers.
+Repository: [Thepch11/static-html-mui-typescript](https://github.com/Thepch11/static-html-mui-typescript).
 
----
-
-## 🎯 Purpose
-
-This repository provides a lightweight and scalable platform for publishing and viewing technical documentation, architecture artifacts, release reports, and business dashboards as a static website.
-
-**Key Characteristics**
-
-- ✅ Read-only document viewer
-- ✅ Static website hosted on GitHub Pages
-- ✅ No backend required
-- ✅ Responsive UI powered by Material UI (MUI)
-- ✅ Supports interactive visualizations
-- ✅ Optimized for large technical documentation repositories
-
----
-
-## 🏗️ Technology Stack
-
-### Frontend
-
-- React
-- TypeScript
-- Material UI (MUI)
-- React Router
-- Markdown Renderer
-- Mermaid
-- SVG Pan Zoom
-- Chart Libraries (Recharts / Chart.js / ECharts)
-
-### Hosting
-
-- GitHub Pages
-
-### CI/CD
-
-- GitHub Actions
-
----
-
-## ✨ Supported Content Types
-
-### 1. Mermaid Diagrams
-
-Render architecture and workflow diagrams directly from Mermaid source.
-
-Supported examples:
-
-- Flowcharts
-- Sequence Diagrams
-- State Diagrams
-- Class Diagrams
-- ER Diagrams
-- User Journeys
-- Gantt Charts
-- Git Graphs
-
-Example:
-
-```mermaid
-flowchart LR
-    A[Source] --> B[Transform]
-    B --> C[Report]
-```
-
----
-
-### 2. Interactive Charts
-
-Display data visualizations including:
-
-- Line Charts
-- Bar Charts
-- Pie Charts
-- Area Charts
-- Scatter Charts
-- Heatmaps
-- Trend Analysis
-
-Supported formats:
-
-- JSON
-- CSV
-
----
-
-### 3. SVG Viewer with Zoom & Pan
-
-Interactive SVG support with:
-
-- Zoom In / Out
-- Pan Navigation
-- Fit to Screen
-- Fullscreen Mode
-- Mini-map Navigation
-
-Ideal for:
-
-- Architecture Diagrams
-- Infrastructure Maps
-- UML Diagrams
-- Process Flows
-
----
-
-### 4. Markdown Documents
-
-Render Markdown files with support for:
-
-- Tables
-- Code Blocks
-- TOC (Table of Contents)
-- Internal Navigation
-- Syntax Highlighting
-- Mermaid Embedding
-
-Supported format:
+## Architecture
 
 ```text
-.md
-```
-
----
-
-### 5. PDF Viewer
-
-Embedded PDF support for:
-
-- Design Documents
-- Business Requirements
-- Release Notes
-- Technical Specifications
-- Architecture Documents
-
-Supported format:
-
-```text
-.pdf
-```
-
----
-
-### 6. JSON & CSV Viewer
-
-Structured data inspection with:
-
-- Tree View
-- Expand / Collapse
-- Search
-- Syntax Highlighting
-- Filtering
-- Sorting
-
-Supported formats:
-
-```text
-.json
-.csv
-```
-
----
-
-### 7. Interactive Table Viewer
-
-Features:
-
-- Client-side Search
-- Pagination
-- Sorting
-- Filtering
-- Export Capability
-- Sticky Headers
-
-Ideal for:
-
-- Release Data
-- Product Catalogs
-- Environment Comparison Reports
-- Inventory Reports
-
----
-
-### 8. Architecture Viewer
-
-Purpose-built support for architecture documentation:
-
-- Solution Architecture
-- System Architecture
-- Application Architecture
-- Integration Architecture
-- Cloud Architecture
-
-Supported formats:
-
-- Mermaid
-- SVG
-- PNG
-- PDF
-- Markdown
-
----
-
-### 9. Release Note Dashboard
-
-Interactive release note visualization including:
-
-- Version History
-- Release Timeline
-- Deployment Summary
-- Environment Comparison
-- Change Tracking
-- Release Verification Reports
-
-Supported environments:
-
-- DIT
-- DIT2
-- SIT
-- UAT
-- PS2
-- PROD
-
----
-
-## 📂 Supported File Types
-
-| File Type | Supported |
-|------------|------------|
-| HTML | ✅ |
-| Markdown (.md) | ✅ |
-| PDF (.pdf) | ✅ |
-| JSON (.json) | ✅ |
-| CSV (.csv) | ✅ |
-| SVG (.svg) | ✅ |
-| PNG / JPG | ✅ |
-| Mermaid (.mmd) | ✅ |
-
----
-
-## 📁 Recommended Project Structure
-
-```text
-project-root/
-│
-├── public/
-│   ├── documents/
-│   ├── reports/
-│   ├── diagrams/
-│   ├── release-notes/
-│   └── assets/
-│
+static-html-mui-typescript/      # Local checkout
+├── index.html                  # Vite HTML entry
+├── styles.css                  # Global accessibility and base styles
 ├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── viewers/
-│   ├── layouts/
-│   ├── hooks/
-│   ├── services/
-│   └── utils/
-│
-├── docs/
-│
-├── .github/
-│   └── workflows/
-│
-└── README.md
+│   ├── main.tsx                 # React mount and MUI providers
+│   ├── App.tsx                  # Responsive resource hub
+│   └── theme.ts                 # Shared MUI tokens
+├── documents/                  # Public documents, copied unchanged
+├── reports/                    # Public report data, copied unchanged
+├── assets/                     # Public images and icons, copied unchanged
+├── scripts/                    # Static copy and build verification
+└── vite.config.ts              # Output names and relative URLs
 ```
 
----
+`npm run build` generates the requested deployment architecture:
 
-## 🚀 Deployment
-
-Build the application:
-
-```bash
-npm install
-npm run build
+```text
+dist/
+├── index.html
+├── bundle.js
+├── styles.css
+├── documents/
+├── reports/
+└── assets/
 ```
 
-Deploy to GitHub Pages:
+`bundle.js` is generated from TypeScript; edit `src/`, not the bundle. Additional generated chunks, if needed, go under `assets/`. MUI component styling uses Emotion at runtime; `styles.css` contains the global styles.
 
-```bash
-npm run deploy
-```
+## Development
 
----
+Requires Node.js 22.12+ and npm. Install locked dependencies with `npm ci`.
 
-## 🔒 Design Principles
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start local Vite development. |
+| `npm run lint` | Check source and configuration with ESLint. |
+| `npm run typecheck` | Run strict TypeScript checking. |
+| `npm run build` | Type-check, build, copy public folders, verify the output contract. |
+| `npm run preview` | Serve the production build locally. |
+| `npm run check:build` | Recheck an existing build's structure and resource files. |
 
-- Read-only content
-- No document editing capabilities
-- Static hosting only
-- Fully client-side rendering
-- Responsive design
-- Accessibility friendly
-- Dark / Light theme support
+Use the URL printed by Vite. Resource cards open a Markdown file, sample JSON, and an SVG; Markdown is not rendered inside the app. Add content to the corresponding folders and update resource links in `src/App.tsx`.
 
----
+## Static Deployment
 
-## 🎨 UI Features
+Upload only the contents of `dist/` to the hosting root. Relative entry and resource URLs support the GitHub Pages repository subpath `/static-html-mui-typescript/`. The application uses section anchors and has no client-side router.
 
-- Material UI Design System
-- Responsive Layout
-- Dark Mode
-- Light Mode
-- Search Across Documents
-- Navigation Sidebar
-- Breadcrumb Navigation
-- Fullscreen Viewer
-- Mobile Friendly
+GitHub Pages settings, CI deployment, a custom 404 page, and remote publication are not configured. Before the first push, inspect the remote history. This build uses stable `bundle.js` and `styles.css` names as requested; configure hosting caches to revalidate those files on updates.
 
----
+## Contributing
 
-## 📈 Typical Use Cases
+See [AGENTS.md](AGENTS.md) for conventions and [TODO.md](TODO.md) for outstanding work. Check mobile/desktop layouts, keyboard navigation, resource URLs, and console errors when changing the UI. All files in `documents/`, `reports/`, and `assets/` are public build inputs: exclude secrets and internal reference documents.
 
-- Technical Documentation Portal
-- Architecture Repository
-- Release Management Dashboard
-- Deployment Verification Reports
-- Product Documentation
-- Engineering Knowledge Base
-- Business Reporting Portal
-- Interactive HTML Reports
-- Mermaid-based Architecture Viewer
+## Verification
 
----
+Lint, strict type checking, production build, and artifact checks passed. Browser checks verified rendering at the repository subpath, a working report link, no horizontal overflow at 375px and 1440px, and keyboard focus on the skip link. No browser warnings/errors were captured during those checks. Full accessibility auditing and remote deployment remain pending.
 
-## License
-
-MIT License
+The installation audit reported 12 moderate advisories in the development ESLint dependency chain (including transitive `minimatch`). No automatic major-version or forced audit fixes were applied. Review tooling updates before CI adoption.

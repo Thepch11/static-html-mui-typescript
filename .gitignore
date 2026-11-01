@@ -1,0 +1,20 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log
+
+# Keep project documentation visible despite global Markdown exclusions.
+!*.md
+!**/*.md
+
+# Public source assets must remain trackable.
+!assets/
+!assets/**
+
+# Preserved migration metadata and previous destination files.
+.migration-backup/
