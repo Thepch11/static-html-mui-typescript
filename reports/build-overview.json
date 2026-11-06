@@ -1,0 +1,7 @@
+{
+  "title": "Static architecture sample",
+  "sample": true,
+  "stack": ["React", "TypeScript", "MUI", "Vite"],
+  "output": ["index.html", "bundle.js", "styles.css", "documents/", "reports/", "assets/"],
+  "backendRequired": false
+}
